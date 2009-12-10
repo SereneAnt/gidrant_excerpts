@@ -1,0 +1,6 @@
+host: localhost
+database: GIS_DB
+query: 'SELECT * FROM z_gidrant_result ORDER BY new_no, NLayer, WHTop'
+
+templates_path: templates
+out_path: out

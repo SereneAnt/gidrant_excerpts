@@ -1,0 +1,69 @@
+h1 {
+  text-align: center;
+  margin: 0px;
+}
+
+#nav {
+  padding: 5px;
+  marging: auto;
+  text-align: center;
+}
+
+#nav .nav_box {
+  display: inline;
+  border: 1px solid #000000;
+  padding: 5 px;
+  text-align: center;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#nav .nav_box.active {
+  border-color: red;
+  border-width: 2px;
+}
+
+div[code='aP'] {
+  background-color: #aaffaa;
+}
+
+div[code='aN2-P1'] {
+  background-color: #aaffaa;
+}
+
+div[code='P\'2bč'] {
+  background-color: #ffebbe;
+}
+
+div[code='N1-P2-3'] {
+  background-color: #ffebbe;
+}
+
+#map_div {
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+img#map {
+  width: 50%;
+  height: 50%;
+}
+
+#descr_popup {
+  display: none;
+  position: fixed;
+  _position: absolute; /* hack for internet explorer 6*/
+  height: 75%;
+  width: 75%;
+  background: #FFFFFF;
+  border: 2px solid #cecece;
+  z-index: 2;
+  padding: 12px;
+  font-size: 13px;
+}
+
+#descr {
+  width: 100%;
+  height: 100%;
+}

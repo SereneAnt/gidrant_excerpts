@@ -1,0 +1,65 @@
+!!! XML
+!!!
+
+%table{:border => 1, :color => 'black'}
+  %tr
+    %th{:colspan => 3} Скважина
+    %th{:colspan => 5} Геол. слой
+    %th{:colspan => 9} Водоносный горизонт
+
+  %tr
+    %th Номер
+    %th Привязка
+    %th Абс. отм.<br/>устья, м
+
+    %th № слоя
+    %th индекс
+    %th порода
+    %th кровля, м
+    %th подошва, м
+
+    %th индекс
+    %th глуб.<br/>от, м
+    %th глуб.<br/>до, м
+    %th мощн., м
+    %th стат.<br/>уровень, м
+    %th понижение, м
+    %th дебит,
+    %th сухой<br/>остаток,
+    %th общая<br/>жесткость,
+
+  - @points.each do |point|
+    - point.layers.each do |layer|
+      - layer.whs.each do |wh|
+
+        %tr{:valign => 'top', :pnt_id => "#{point.id}"}
+
+          -# Point data.
+          - if layer == point.layers[0] and wh = layer.whs[0]
+            - wh_count = point_wh_count point
+            %td{:rowspan => wh_count}= point.new_no
+            %td{:rowspan => wh_count}= point.bind.sub(/М/, '') # Map sheet remove (like М-36-105-В). \-\d+\-\d+\-\w+\.
+            %td{:rowspan => wh_count}= point.z_orig
+
+          -# Layer data.
+          - if wh == layer.whs[0]
+            - wh_count = layer.whs.size
+            %td{:rowspan => wh_count}= layer.nlayer
+            %td{:rowspan => wh_count}= layer.lay_index_alias
+            %td{:rowspan => wh_count}= layer.lay_description
+            %td{:rowspan => wh_count}= layer.laytop
+            %td{:rowspan => wh_count}= layer.laybottom
+
+          -# WH data.
+          - if wh.whtop
+            %td= wh.whindex
+            %td= wh.whtop
+            %td= wh.whbtm
+            %td= (wh.isreal == 1) ? wh.whpower: "(#{wh.whpower})"
+            %td= wh.statlevel
+            %td= wh.whdecrement
+            %td= wh.whdebit
+            %td= wh.dryrest
+            %td= wh.commonrigid
+          - else
+            %td{:colspan => 9}
